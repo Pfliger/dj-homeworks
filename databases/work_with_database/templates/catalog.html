@@ -5,15 +5,34 @@
 {% block content %}
     <div class="container">
         <div class="header">
-            <h1><a href="/catalog">Каталог</a></h1>
+            <h1 class="text-primary"><center>Каталог</center></h1>
         </div>
 
         <div class="sort-block">
             {# Здесь должен быть раздел с сортировкой #}
+            <h6>
+                <div  class="row">
+            <div><strong>Сортировать по:</strong></div>
+                    <div class="pl-3"><a href="/catalog?sort=name">названию</a></div>
+                    <div class="pl-3"><a href="/catalog?sort=price">начиная с дешевых</a></div>
+                    <div class="pl-3"><a href="/catalog?sort=-price">начиная с дорогих</a></div>
+                </div>
+            </h6>
         </div>
 
         <div class="content">
             {# Здесь должен отображаться каталог с телефонами #}
+            <div class="row">
+                {% for phone in phones %}
+                    <div class="col-6">
+                        <center>
+                        <h2><a href="/catalog/{{ phone.slug }}">{{ phone.name }}</a></h2>
+                        <h6>Стоимость: {{ phone.price }} руб.</h6>
+                        <img src="{{ phone.image }}"  alt="{{ phone.name }}" height="200">
+                        </center>>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
